@@ -29,3 +29,6 @@ def users():
 @bp.route("/deals")
 def deals():
     return jsonify({"deals": get_deals()})
+@app.route("/health")
+def health():
+    return {"status": "ok"}, 200
