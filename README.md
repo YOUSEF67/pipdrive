@@ -45,10 +45,10 @@ python app/main.py
 
 ---
 
-## 🔗 Links & Deployment
+## 🔗 Links  Deployment
 
 - **Live Demo (Render):** [https://pipdrive-production.up.railway.app/gists/{username}]
-[https://pipdrive-production.up.railway.app/users]
-[https://pipdrive-production.up.railway.app/deals]
-[https://pipdrive-production.up.railway.app/scan]
+-[https://pipdrive-production.up.railway.app/users]
+-[https://pipdrive-production.up.railway.app/deals]
+-[https://pipdrive-production.up.railway.app/scan]
 
