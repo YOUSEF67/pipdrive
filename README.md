@@ -20,10 +20,9 @@ A Python Flask application that:
 
 ## 📂 API Endpoints
 - `GET /health` → Health check
-- `POST /track/<username>` → Start tracking a GitHub user
 - `GET /gists/<username>` → List gists for a user
 - `GET /deals` → List all mock deals
-- `POST /scan` → Trigger scan for all tracked users (called by cron job)
+- `POST /scan` → Trigger scan for all tracked users 
 
 ---
 
