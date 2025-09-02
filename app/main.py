@@ -4,6 +4,7 @@ import logging
 from .github_service import fetch_gists
 from .pipedrive_service import create_deal, get_deals
 from .storage import add_gists, get_seen_gists, get_all_users
+from .scheduler import run_scan 
 
 bp = Blueprint("main", __name__)
 logging.basicConfig(level=logging.INFO)
@@ -32,24 +33,10 @@ def deals():
 @bp.route("/health")
 def health():
     return {"status": "ok"}, 200
-@bp.route("/scan", methods=["POST"])
+@bp.route("/scan", methods=["POST"])   
 def scan():
-    users = get_all_users()
-    scanned = {}
-
-    for username in users:
-        gists = fetch_gists(username)
-        new_gists = add_gists(username, gists)
-
-        for gist in new_gists:
-            create_deal(gist["description"], gist["url"], gist["id"])
-
-        scanned[username] = {
-            "new_gists": new_gists,
-            "already_seen": get_seen_gists(username)
-        }
-
+    results = run_scan() 
     return jsonify({
         "status": "scan completed",
-        "results": scanned
+        "results": results
     })
