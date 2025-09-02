@@ -33,9 +33,9 @@ def deals():
 @bp.route("/health")
 def health():
     return {"status": "ok"}, 200
-@bp.route("/scan", methods=["POST"])   
+@bp.route("/scan", methods=["POST", "GET"])
 def scan():
-    results = run_scan() 
+    results = run_scan()
     return jsonify({
         "status": "scan completed",
         "results": results
