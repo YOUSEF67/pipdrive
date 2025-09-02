@@ -32,3 +32,24 @@ def deals():
 @bp.route("/health")
 def health():
     return {"status": "ok"}, 200
+@bp.route("/scan", methods=["POST"])
+def scan():
+    users = get_all_users()
+    scanned = {}
+
+    for username in users:
+        gists = fetch_gists(username)
+        new_gists = add_gists(username, gists)
+
+        for gist in new_gists:
+            create_deal(gist["description"], gist["url"], gist["id"])
+
+        scanned[username] = {
+            "new_gists": new_gists,
+            "already_seen": get_seen_gists(username)
+        }
+
+    return jsonify({
+        "status": "scan completed",
+        "results": scanned
+    })
